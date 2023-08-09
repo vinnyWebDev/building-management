@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   before_action :set_ticket, only: %i[ show edit update destroy ]
-
+  protect_from_forgery with: :exception, unless: -> {request.format.json?}
+  
   # GET /tickets or /tickets.json
   def index
     @tickets = Ticket.all
